@@ -16,7 +16,30 @@ export default function Player () {
       // muxVideoRef is a ref to the `<mux-video>` DOM element
       muxVideoRef.current.addEventListener('webkitplaybacktargetavailabilitychanged', onPlaybackTargetChanged);
     }
+
   }, [])
+
+  /*
+   * Chromecast setup
+   */
+  useEffect(() => {
+    const initializeCastApi = function() {
+      console.log('debug initializeCastApi');
+      cast.framework.CastContext.getInstance().setOptions({
+        receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID
+      });
+      const castSession = cast.framework.CastContext.getInstance().getCurrentSession();
+      console.log('debug castSession', castSession);
+    };
+
+    console.log('debug setting __onGCastApiAvailable', typeof cast);
+    window['__onGCastApiAvailable'] = function(isAvailable) {
+      console.log('debug isAvailable', isAvailable);
+      if (isAvailable) {
+        initializeCastApi();
+      }
+    };
+  }, []);
 
   return (
     <div>
