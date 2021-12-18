@@ -22,7 +22,7 @@ export default function Player () {
     <div>
       <div className="wrapper">
         <media-controller>
-          <MuxVideoReact slot="media" className="video" playbackId="3taBcOqKMfNG029QjBCJMKLviq13OrV6S" />
+          <MuxVideoReact ref={muxVideoRef} slot="media" className="video" playbackId="3taBcOqKMfNG029QjBCJMKLviq13OrV6S" />
           <media-control-bar>
             <media-play-button></media-play-button>
             <media-mute-button></media-mute-button>
