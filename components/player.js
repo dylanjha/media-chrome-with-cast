@@ -9,7 +9,7 @@ export default function Player () {
 
   useEffect(() => {
     const onPlaybackTargetChanged = (event) => {
-      setHasAirplay(!!event.availability);
+      setHasAirplay(event.availability === 'available');
     };
 
     if (window.WebKitPlaybackTargetAvailabilityEvent) {
@@ -22,7 +22,7 @@ export default function Player () {
     <div>
       <div className="wrapper">
         <media-controller>
-          <MuxVideoReact ref={muxVideoRef} slot="media" className="video" playbackId="3taBcOqKMfNG029QjBCJMKLviq13OrV6S" poster="https://image.mux.com/3taBcOqKMfNG029QjBCJMKLviq13OrV6S/thumbnail.jpg?width=500" />
+          <MuxVideoReact playsInline ref={muxVideoRef} slot="media" className="video" playbackId="3taBcOqKMfNG029QjBCJMKLviq13OrV6S" poster="https://image.mux.com/3taBcOqKMfNG029QjBCJMKLviq13OrV6S/thumbnail.jpg?width=500" />
           <div className="desktop">
             <media-control-bar>
               <media-play-button></media-play-button>
@@ -41,6 +41,7 @@ export default function Player () {
             {hasAirplay && <AirPlayButton onClick={() => muxVideoRef.current.webkitShowPlaybackTargetPicker()} />}
             <google-cast-launcher></google-cast-launcher>
             <media-pip-button></media-pip-button>
+            {hasAirplay && <AirPlayButton onClick={() => muxVideoRef.current.webkitShowPlaybackTargetPicker()} />}
             <media-fullscreen-button></media-fullscreen-button>
           </div>
           <div className="mobile centered-controls" slot="centered-chrome">

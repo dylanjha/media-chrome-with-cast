@@ -13,7 +13,7 @@ const AirPlayButton = ({ onClick }) => {
       tabIndex="0"
       onClick={onClick}
       onKeyPress={onKeyPress}
-      style={{ display: 'inline-block', verticalAlign: 'center' }}
+      style={{ display: 'inline-block', verticalAlign: 'center', width: '44px', height: '44px', backgroundColor: 'rgba(20,20,30, 0.7)' }}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
